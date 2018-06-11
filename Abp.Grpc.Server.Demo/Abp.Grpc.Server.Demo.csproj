@@ -5,10 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Dockerfile" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Dockerfile" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Abp" Version="3.7.0" />
+    <PackageReference Include="Abp.AspNetCore" Version="3.7.0" />
+    <PackageReference Include="Abp.Grpc.Server" Version="1.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 

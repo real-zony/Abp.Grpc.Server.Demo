@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Abp.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Abp.Grpc.Server.Demo
 {
@@ -13,21 +10,29 @@ namespace Abp.Grpc.Server.Demo
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            // 添加 MVC
+            services.AddMvc();
+            // 添加 ABP 框架，注意更改 ConfigureServices 返回值为 IServiceProvider
+            return services.AddAbp<AbpGrpcServerDemoModule>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            // 启用 ABP 框架中间件
+            app.UseAbp();
+            // 启用 MVC 中间件
+            app.UseMvc(routes =>
             {
-                app.UseDeveloperExceptionPage();
-            }
+                routes.MapRoute(
+                    name: "defaultWithArea",
+                    template: "{area}/{controller=Home}/{action=Index}/{id?}");
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
