@@ -17,9 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Abp" Version="3.7.0" />
-    <PackageReference Include="Abp.AspNetCore" Version="3.7.0" />
-    <PackageReference Include="Abp.Grpc.Server" Version="1.0.1" />
+    <PackageReference Include="Abp" Version="3.8.2" />
+    <PackageReference Include="Abp.AspNetCore" Version="3.8.2" />
+    <PackageReference Include="Abp.Grpc.Server" Version="3.8.2.4" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 

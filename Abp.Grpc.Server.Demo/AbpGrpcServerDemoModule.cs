@@ -25,6 +25,8 @@ namespace Abp.Grpc.Server.Demo
                     consulOption.ConsulPort = 8500;
                     // 注册到 Consul 的服务名称
                     consulOption.RegistrationServiceName = "TestGrpcService";
+                    // 健康检查接口的地址
+                    consulOption.ConsulHealthCheckAddress = "172.31.61.41";
                     // 健康检查接口的端口号
                     consulOption.ConsulHealthCheckPort = 5000;
                 });
